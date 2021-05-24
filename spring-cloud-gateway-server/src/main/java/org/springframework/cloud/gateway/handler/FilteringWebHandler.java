@@ -16,14 +16,14 @@
 
 package org.springframework.cloud.gateway.handler;
 
+import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import reactor.core.publisher.Mono;
-
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -35,7 +35,7 @@ import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebHandler;
 
-import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR;
+import reactor.core.publisher.Mono;
 
 /**
  * WebHandler that delegates to a chain of {@link GlobalFilter} instances and
@@ -121,7 +121,6 @@ public class FilteringWebHandler implements WebHandler {
 				}
 			});
 		}
-
 	}
 
 	private static class GatewayFilterAdapter implements GatewayFilter {
